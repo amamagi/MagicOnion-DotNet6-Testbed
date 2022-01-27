@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>MagicOnion_DotNet6_Shared</RootNamespace>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MagicOnion.MSBuild.Tasks" Version="4.3.1" />
+    <PackageReference Include="MagicOnion.Shared" Version="4.3.1" />
+    <PackageReference Include="MessagePack.MSBuild.Tasks" Version="2.1.194">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="MessagePack.UnityShims" Version="2.1.194" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\MagicOnion-DotNet6-Client\Assets\MagicOnion-DotNet6\MagicOnion\Server\**\*.cs" Link="Server/%(RecursiveDir)/%(FileName)%(Extension)" />
+	</ItemGroup>
+
+	<Target Name="GenerateMessagePack" AfterTargets="Compile">
+		<MessagePackGenerator input="$(ProjectPath)" output="..\MagicOnion-DotNet6-Client\Assets\MagicOnion-DotNet6\MagicOnion\Client\Generated\MessagePack.Generated.cs" />
+	</Target>
+	<Target Name="GenerateMagicOnion" AfterTargets="Compile">
+		<MagicOnionGenerator Input="$(ProjectPath)" Output="..\MagicOnion-DotNet6-Client\Assets\MagicOnion-DotNet6\MagicOnion\Client\Generated\MagicOnion.Generated.cs" />
+	</Target>
+
+</Project>
