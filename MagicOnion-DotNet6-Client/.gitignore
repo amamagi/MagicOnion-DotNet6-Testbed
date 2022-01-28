@@ -1,5 +1,7 @@
 Assets/Plugins/
 Assets/TextMesh Pro/
+Assets/Scripts/MagicOnion/
+Assets/Scripts/MessagePack/
 
 # Created by https://www.toptal.com/developers/gitignore/api/rider,unity
 # Edit at https://www.toptal.com/developers/gitignore?templates=rider,unity
